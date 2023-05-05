@@ -1,0 +1,36 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    <h1 align="center">Edit Profile</h1>
+    {% csrf_token %}
+    <div class="mb-3">
+
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+               aria-describedby="emailHelp " value="{{ profile.email }}"
+               required>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+        <div class="mb-3">
+            <label for="username1">User Name</label>
+            <input class="form-control" id="username1" name="username" required></div>
+    </div>
+
+    <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea class="form-control" id="bio" name="bio" style="height: 200px" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Avatar</label>
+        <input class="form-control" type="file" id="formFile" name="avatar" accept="image/*" required>
+    </div>
+
+    <div align="center">
+        <button type="submit" class="btn btn-success">EDIT</button>
+    </div>
+</form>
+
+{% endblock %}

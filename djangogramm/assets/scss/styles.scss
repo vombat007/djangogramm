@@ -1,0 +1,134 @@
+@import "~bootstrap/scss/bootstrap";
+/* Navigation */
+ nav {
+	 position: fixed;
+	 left: 0;
+	 top: 0;
+	 width: 230px;
+	 height: 100vh;
+	 background-color: #1a1a1a;
+	 padding: 20px;
+}
+ .nav-link {
+	 display: inline-block;
+	 margin: 10px 0;
+	 color: #ffffff;
+}
+ .nav-link:hover {
+	 color: #cccccc;
+}
+/* Content */
+ main {
+	 margin-left: 220px;
+	 padding: 20px;
+}
+/* Body */
+ body {
+	 background-color: #000000;
+	 color: #ffffff;
+	 font-family: Arial, sans-serif;
+	 font-size: 16px;
+	 line-height: 1.5;
+}
+/* Links */
+ a {
+	 color: #ffffff;
+	 text-decoration: none;
+}
+ a:hover {
+	 color: #cccccc;
+}
+ a:visited {
+	 color: #999999;
+}
+/* Navigation */
+ nav {
+	 position: fixed;
+	 left: 0;
+	 top: 0;
+	 width: 230px;
+	 height: 100vh;
+	 background-color: #1a1a1a;
+	 padding: 20px;
+}
+ .nav-link {
+	 display: inline-block;
+	 margin: 10px 0;
+	 color: #ffffff;
+}
+ .nav-link:hover {
+	 color: #cccccc;
+}
+/* Content */
+ main {
+	 margin-left: 220px;
+	 padding: 20px;
+}
+/* Body */
+ body {
+	 background-color: #000000;
+	 color: #ffffff;
+	 font-family: Arial, sans-serif;
+	 font-size: 16px;
+	 line-height: 1.5;
+}
+/* Links */
+ a {
+	 color: #ffffff;
+	 text-decoration: none;
+}
+ a:hover {
+	 color: #cccccc;
+}
+ a:visited {
+	 color: #999999;
+}
+ form {
+	 display: flex;
+	 flex-direction: column;
+	 max-width: 400px;
+	 margin: auto;
+	 margin-top: 20px;
+	 margin-bottom: 20px;
+	 padding: 10px;
+}
+ .form-control {
+	 margin-bottom: 10px;
+}
+ .form-input {
+	 padding-bottom: 10px;
+}
+ .profile-form {
+	 position: relative;
+	 left: 0;
+	 top: 0;
+	 margin: -20px;
+	 padding: 20px;
+	 width: 150px;
+}
+ h1 {
+	 display: flex;
+	 flex-direction: column;
+	 max-width: 1000px;
+	 margin: auto;
+}
+ .h1-symbol {
+	 margin-bottom: 10px;
+	 margin-left: 10px;
+	 display: flex;
+}
+ h3 {
+	 display: flex;
+	 flex-direction: column;
+	 max-width: 900px;
+	 margin: left;
+}
+ .h3-symbol {
+	 margin-bottom: 10px;
+	 margin-left: 10px;
+	 display: flex;
+}
+
+ .like-button {
+     width: 78px !important;
+}

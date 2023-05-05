@@ -1,0 +1,127 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+
+{% if profile.username != request.user.username %}
+
+{% else %}
+
+<ul>
+    <li><a href="{% url 'edit_profile' %}" class="nav-link">Edit Profile</a> |
+        <a href="{% url 'change_password' %}" class="nav-link">Change Password</a></li>
+
+</ul>
+{% endif %}
+
+{% if not profile.username %}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="info-fill" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1
+        4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703
+        0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381
+        2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+</svg>
+<h3>
+    <div class="alert alert-primary d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill"/>
+        </svg>
+        <div class="fs-1" align="center">
+            Before You Can Use Profile: add username and upload avatar!
+        </div>
+    </div>
+</h3>
+
+<button type="submit" class="btn btn-warning btn-lg" onclick="location.href='{% url 'edit_profile' %}'">Edit Profile
+</button>
+
+
+{% else %}
+<h4>{{ profile.username }}</h4>
+
+{% if profile.avatar %}
+<img class="mb-3" src="{{ profile.avatar.url }}" style="width: 320px; height: 320px" alt="Avatar">
+
+{% if profile.username != request.user.username %}
+
+<form class="mb-3 profile-form" action="{% url 'following' profile.username %}" method="POST">
+
+    {% csrf_token %}
+
+    {% if follow %}
+    <button type="submit" class="btn btn-secondary" onclick="location.href='{% url 'profile' profile.username %}'">
+        Unfollow
+    </button>
+
+    {% else %}
+
+    <button type="submit" class="btn btn-primary" onclick="location.href='{% url 'profile' profile.username %}'">
+        Follow
+    </button>
+    {% endif %}
+
+</form>
+
+{% endif %}
+
+{% else %}
+<p>Please Upload Avatar: Use Edit Profile</p>
+{% endif %}
+
+<p>Email: {{ profile.email }}</p>
+<p>Bio: {{ profile.bio }}</p>
+
+<div class="mb-3" style="display: inline-flex;">
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post' %}'">
+        Followers <span class="badge text-bg-secondary">{{ followers.count }}</span>
+    </button>
+
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+            style="margin-left: 10px;">
+        Show Followers
+    </button>
+
+    <ul class="dropdown-menu">
+        {% for follower in followers %}
+        <li><a class="dropdown-item" href="{% url 'profile' follower.user.username %}">
+            {{ follower.user.username }}</a></li>
+        {% endfor %}
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+</div>
+
+{% if profile.username != request.user.username %}
+
+{% else %}
+
+<div class="mb-3">
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'following_post' %}'">
+        Following <span class="badge text-bg-secondary">{{ following.count }}</span>
+    </button>
+
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+            style="margin-left: 6px;">
+        Show Following
+    </button>
+
+    <ul class="dropdown-menu">
+        {% for following_user in following %}
+        <li><a class="dropdown-item" href="{% url 'profile' following_user.following_user.username %}">
+            {{ following_user.following_user.username }}</a></li>
+        {% endfor %}
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+</div>
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

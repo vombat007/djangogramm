@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DjangoGramm</title>
+    {% load static %}
+
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'main' %}
+    {% render_bundle 'post' %}
+</head>
+
+<body>
+<header>
+
+    <nav>
+        <p style="font-size: 1.1vw; font-family: Script;"> DjangoGramm </p>
+
+        <ul>
+
+            {% if request.user.is_authenticated %}
+
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a>{{ user.username }}</a> |
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+            <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+
+            <li><a href="{% url 'create_post' %}" class="nav-link">Create Post</a></li>
+            <li><a href="{% url 'following_post' %}" class="nav-link">Following Post</a></li>
+
+
+            {% else %}
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+
+            <li><a href="{% url 'login' %}" class="nav-link">Sing In</a> |
+                <a href="{% url 'registration' %}" class="nav-link">Sing Up</a></li>
+
+            {% endif %}
+
+            <li><a href="{% url 'post' %}" class="nav-link">Post</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>

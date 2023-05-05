@@ -1,0 +1,42 @@
+{% extends 'app1/base.html' %}
+
+{% block title %}DjangoGramm{% endblock %}
+
+{% block content %}
+
+<h5 align="center" style="font-size: 2vw; font-family: Script;">DjangoGramm</h5>
+<div class="collage">
+    {% for image in images %}
+
+    <img src="{{ image.image_file.url }}" class="collage-item">
+    {% endfor %}
+
+</div>
+<style>
+
+.collage {
+  column-count: 4;
+  column-gap: 10px;
+}
+
+.collage-item {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .collage {
+    column-count: 2;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .collage {
+    column-count: 1;
+  }
+}
+
+
+</style>
+{% endblock %}

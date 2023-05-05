@@ -1,0 +1,10 @@
+.idea
+*__pycache__
+.env
+db.sqlite3
+venv
+notes
+static
+bundles
+webpack-stats.json
+node_modules

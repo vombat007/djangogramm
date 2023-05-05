@@ -1,0 +1,13 @@
+{% extends 'app1/base.html' %}
+
+{% block title %}DjangoGramm{% endblock %}
+
+{% block content %}
+<h1>Upload Image</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+{% endblock %}
