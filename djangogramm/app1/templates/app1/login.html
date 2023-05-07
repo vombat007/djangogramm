@@ -11,6 +11,12 @@
     <div align="center">
         <button type="submit" class="btn btn-success">Sign In</button>
     </div>
-</form>
 
+    <ul>
+    <li>
+        <a href="{% url 'social:begin' 'github' %}">Login with Github</a>
+    </li>
+
+</ul>
+</form>
 {% endblock %}

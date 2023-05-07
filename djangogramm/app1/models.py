@@ -1,19 +1,30 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.db import models
+from django.db import models, IntegrityError
 from cloudinary.models import CloudinaryField
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, password=None, username=None):
         """
         Creates and saves a User with the given email and password.
         """
         if not email:
             raise ValueError('The Email field must be set')
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+
+        if User.objects.filter(email=self.normalize_email(email).lower()).exists():
+            raise ValueError('This email has already been registered.')
+
+        user = self.model(
+            email=self.normalize_email(email).lower(),
+        )
+
         user.set_password(password)
-        user.save(using=self._db)
+        try:
+            user.save(using=self._db)
+
+        except IntegrityError:
+            raise ValueError('This email has already been registered.')
+
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
@@ -26,7 +37,16 @@ class MyUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=35, unique=True)
+    objects = MyUserManager()
+
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+        error_messages={
+            'unique': "This email has already been registered.",
+        }
+    )
     username = models.CharField(max_length=35)
     password = models.CharField(max_length=255)
     bio = models.TextField(max_length=300)
@@ -36,13 +56,38 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
+    # Custom: was this email validated, at some point, by sending an email?
+    is_email_validated = models.BooleanField(default=False)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    objects = MyUserManager()
-
     class Meta:
         app_label = 'app1'
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def __str__(self):
+        return self.email
+
+    def __unicode__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
 
 
 class UserFollowing(models.Model):
