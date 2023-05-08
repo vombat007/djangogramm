@@ -11,12 +11,21 @@
     <div align="center">
         <button type="submit" class="btn btn-success">Sign In</button>
     </div>
-
-    <ul>
-    <li>
-        <a href="{% url 'social:begin' 'github' %}">Login with Github</a>
-    </li>
-
-</ul>
 </form>
+        <button type="submit" class="btn btn-success github-btn" onclick="location.href='{% url 'social:begin' 'github' %}'">Login
+            with Github
+        </button>
+
+
+<style>
+     .github-btn {
+	 display: flex;
+	 flex-direction: column;
+	 max-width: 400px;
+	 margin: auto;
+	 margin-top: 20px;
+	 margin-bottom: 20px;
+	 padding: 10px;
+}
+</style>
 {% endblock %}
