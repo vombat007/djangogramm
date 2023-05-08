@@ -87,10 +87,6 @@
         <li><a class="dropdown-item" href="{% url 'profile' follower.user.username %}">
             {{ follower.user.username }}</a></li>
         {% endfor %}
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Separated link</a></li>
     </ul>
 </div>
 
@@ -113,10 +109,6 @@
         <li><a class="dropdown-item" href="{% url 'profile' following_user.following_user.username %}">
             {{ following_user.following_user.username }}</a></li>
         {% endfor %}
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Separated link</a></li>
     </ul>
 </div>
 
