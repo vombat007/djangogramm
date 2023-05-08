@@ -13,26 +13,16 @@
     </div>
 </form>
 
-<button type="submit" class="btn btn-success social-btn" onclick="location.href='{% url 'social:begin' 'github' %}'">
-    Sing In
-    with Github
-</button>
+<div class="social-btns">
+    <button type="submit" class="btn btn-success social-btn github-btn"
+            onclick="location.href='{% url 'social:begin' 'github' %}'">
+        Sing In with Github
+    </button>
 
-<button type="submit" class="btn btn-success social-btn"
-        onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'">   Sing In with GOOGLE
-</button>
+    <button type="submit" class="btn btn-success social-btn google-btn"
+            onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'">
+        Sing In with Google
+    </button>
+</div>
 
-
-<style>
-     .social-btn {
-	 display: flex;
-	 flex-direction: column;
-	 max-width: 400px;
-	 margin: auto;
-	 margin-top: 20px;
-	 margin-bottom: 20px;
-	 padding: 10px;
-}
-
-</style>
 {% endblock %}
