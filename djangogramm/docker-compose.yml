@@ -16,8 +16,8 @@ services:
 
   nginx:
     build:
-      dockerfile: docker/nginx/Dockerfile
-      context: docker/nginx
+      dockerfile: ./Dockerfile
+      context: ./docker/nginx/
     container_name: djangogramm_nginx
     image: djangogramm_nginx
     volumes:
