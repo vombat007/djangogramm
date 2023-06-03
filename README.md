@@ -1,4 +1,15 @@
-# Task 12 Create basic application
+# Djangogramm
+
+Djangogramm is a web application built with Django framework that aims to replicate the functionality of Instagram. It allows users to sign up, create profiles, post photos, follow other users, and engage with their content through likes and comments.
+
+##Features
+- User Authentication: Users can create accounts, log in, and manage their profiles.
+- Photo Upload: Users can upload photos to share with their followers.
+- Follow System: Users can follow other users and see their posts in their feed.
+- Like and Comment: Users can like and comment on posts to interact with other users.
+- Explore Page: Users can discover new content through the explore page.
+
+
 ## Getting started
 ## Use to fill database
 1 = {number_of_users},2 = {number_of_posts},3 = {number_of_images_per_post},4 = {number_of_likes_per_post}
