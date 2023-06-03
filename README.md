@@ -2,7 +2,7 @@
 
 Djangogramm is a web application built with Django framework that aims to replicate the functionality of Instagram. It allows users to sign up, create profiles, post photos, follow other users, and engage with their content through likes and comments.
 
-##Features
+Features
 - User Authentication: Users can create accounts, log in, and manage their profiles.
 - Photo Upload: Users can upload photos to share with their followers.
 - Follow System: Users can follow other users and see their posts in their feed.
